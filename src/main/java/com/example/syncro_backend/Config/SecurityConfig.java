@@ -1,5 +1,4 @@
 package com.example.syncro_backend.Config;
-
 import com.example.syncro_backend.Security.JwtAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

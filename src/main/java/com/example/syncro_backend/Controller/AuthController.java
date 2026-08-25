@@ -1,5 +1,4 @@
 package com.example.syncro_backend.Controller;
-
 import com.example.syncro_backend.DTO.AuthResponse;
 import com.example.syncro_backend.DTO.LoginRequest;
 import com.example.syncro_backend.DTO.RegisterRequest;
@@ -9,9 +8,8 @@ import com.example.syncro_backend.Security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
-
+import org.springframework.security.core.context.SecurityContextHolder;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -25,6 +23,12 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @GetMapping("/me")
+    public User getCurrentUser() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest request) {
         User user = new User();

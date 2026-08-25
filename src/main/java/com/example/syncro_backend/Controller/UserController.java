@@ -4,7 +4,7 @@ import com.example.syncro_backend.Entity.User;
 import com.example.syncro_backend.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.List;
 
 @RestController
@@ -13,6 +13,13 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @GetMapping("/me")
+    public User getCurrentUser() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
 
     @GetMapping
     public List<User> getAllUsers() {

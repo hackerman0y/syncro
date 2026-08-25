@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-bg: #F6F7F9;
+  --color-surface: #FFFFFF;
+  --color-ink: #1B2432;
+  --color-accent: #FF6B4A;
+  --color-muted: #6B7280;
+  --color-border: #E5E7EB;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--color-bg);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+}

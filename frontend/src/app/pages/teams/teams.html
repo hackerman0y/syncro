@@ -1,0 +1,30 @@
+<header class="page-header">
+  <div>
+    <h1>Teams</h1>
+    <p class="subtitle">Manage your teams and members.</p>
+  </div>
+  <button mat-flat-button class="new-btn" (click)="toggleForm()">
+    {{ showForm() ? 'Cancel' : '+ New Team' }}
+  </button>
+</header>
+
+<form *ngIf="showForm()" [formGroup]="teamForm" (ngSubmit)="onSubmit()" class="team-form">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Team name</mat-label>
+    <input matInput type="text" formControlName="name" />
+  </mat-form-field>
+  <button mat-flat-button type="submit" [disabled]="teamForm.invalid" class="submit-btn">
+    Create team
+  </button>
+</form>
+
+<section class="team-grid">
+  <div class="team-card" *ngFor="let team of teams()">
+    <h3>{{ team.name }}</h3>
+  </div>
+
+  <div class="empty-state" *ngIf="teams().length === 0">
+    <span class="material-icons empty-icon">groups</span>
+    <p>No teams yet. Create your first team to get started.</p>
+  </div>
+</section>

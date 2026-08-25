@@ -1,0 +1,35 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="accent-bar"></div>
+
+    <div class="brand">
+      <span class="brand-name">Syncr<span class="brand-dot">o</span></span>
+      <p class="brand-tagline">Create your account</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" [disabled]="registerForm.invalid" class="full-width submit-btn">
+        Create account
+      </button>
+
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+
+    <p class="register-link">Already have an account? <a routerLink="/login">Log in</a></p>
+  </div>
+</div>

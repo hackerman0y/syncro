@@ -1,0 +1,35 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-name">Syncr<span class="brand-dot">o</span></span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" routerLink="/dashboard" routerLinkActive="active">
+        <span class="material-icons">dashboard</span>
+        Dashboard
+      </a>
+      <a class="nav-item" routerLink="/teams" routerLinkActive="active">
+        <span class="material-icons">groups</span>
+        Teams
+      </a>
+      <a class="nav-item" routerLink="/tasks" routerLinkActive="active">
+        <span class="material-icons">checklist</span>
+        Tasks
+      </a>
+      <a class="nav-item" routerLink="/meetings" routerLinkActive="active">
+        <span class="material-icons">event</span>
+        Meetings
+      </a>
+    </nav>
+
+    <button class="logout-btn" (click)="logout()">
+      <span class="material-icons">logout</span>
+      Logout
+    </button>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

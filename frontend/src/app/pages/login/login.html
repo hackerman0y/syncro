@@ -1,0 +1,30 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="accent-bar"></div>
+
+    <div class="brand">
+      <span class="brand-name">Syncr<span class="brand-dot">o</span></span>
+      <p class="brand-tagline">Coordinate your team, in sync.</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" [disabled]="loginForm.invalid" class="full-width submit-btn">
+        Log in
+      </button>
+
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+
+    <p class="register-link">Don't have an account? <a routerLink="/register">Create one</a></p>
+  </div>
+</div>

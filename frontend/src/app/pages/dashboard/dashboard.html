@@ -1,0 +1,17 @@
+<header class="content-header">
+  <h1>Dashboard</h1>
+  <p class="subtitle">Here's what's happening with your tasks.</p>
+</header>
+
+<section class="task-list">
+  <div class="task-card" *ngFor="let task of tasks()">
+    <h3>{{ task.title }}</h3>
+    <p class="task-desc">{{ task.description }}</p>
+    <span class="task-status">{{ task.status }}</span>
+  </div>
+
+  <div class="empty-state" *ngIf="tasks().length === 0">
+    <span class="material-icons empty-icon">inbox</span>
+    <p>No tasks yet. Once you create a team, tasks will show up here.</p>
+  </div>
+</section>

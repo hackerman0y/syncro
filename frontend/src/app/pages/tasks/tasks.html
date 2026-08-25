@@ -1,0 +1,47 @@
+<header class="page-header">
+  <div>
+    <h1>Tasks</h1>
+    <p class="subtitle">Track work across your teams.</p>
+  </div>
+  <button mat-flat-button class="new-btn" (click)="toggleForm()">
+    {{ showForm() ? 'Cancel' : '+ New Task' }}
+  </button>
+</header>
+
+<form *ngIf="showForm()" [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Task title</mat-label>
+    <input matInput type="text" formControlName="title" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Description</mat-label>
+    <input matInput type="text" formControlName="description" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Team</mat-label>
+    <mat-select formControlName="teamId">
+      <mat-option *ngFor="let team of teams()" [value]="team.id">
+        {{ team.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-flat-button type="submit" [disabled]="taskForm.invalid" class="submit-btn">
+    Create task
+  </button>
+</form>
+
+<section class="task-grid">
+  <div class="task-card" *ngFor="let task of tasks()">
+    <h3>{{ task.title }}</h3>
+    <p class="task-desc" *ngIf="task.description">{{ task.description }}</p>
+    <span class="task-status">{{ task.status }}</span>
+  </div>
+
+  <div class="empty-state" *ngIf="tasks().length === 0">
+    <span class="material-icons empty-icon">checklist</span>
+    <p>No tasks yet. Create your first task to get started.</p>
+  </div>
+</section>

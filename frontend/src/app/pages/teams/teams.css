@@ -1,0 +1,80 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin: 0 0 4px;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.new-btn {
+  background-color: var(--color-ink) !important;
+  color: white !important;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.team-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.full-width {
+  flex: 1;
+}
+
+.submit-btn {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+  border-radius: 8px;
+  height: 56px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.team-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.team-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-muted);
+}
+
+.empty-icon {
+  font-size: 48px;
+  color: var(--color-border);
+  margin-bottom: 12px;
+}

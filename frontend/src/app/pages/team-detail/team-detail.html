@@ -1,0 +1,38 @@
+<header class="page-header">
+  <h1>{{ team()?.name || 'Loading...' }}</h1>
+  <p class="subtitle">Team members and tasks</p>
+</header>
+
+<section class="detail-section">
+  <h2>Members</h2>
+  <div class="member-list">
+    <div class="member-chip" *ngFor="let member of members()">
+      {{ member.user?.name || member.user?.email }}
+      <span class="role-badge">{{ member.role }}</span>
+    </div>
+    <p *ngIf="members().length === 0" class="empty-text">No members yet.</p>
+  </div>
+
+  <form [formGroup]="inviteForm" (ngSubmit)="onInvite()" class="invite-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Invite by email</mat-label>
+      <input matInput type="email" formControlName="email" />
+    </mat-form-field>
+    <button mat-flat-button type="submit" [disabled]="inviteForm.invalid" class="invite-btn">
+      Add member
+    </button>
+  </form>
+  <p *ngIf="inviteMessage()" class="invite-message">{{ inviteMessage() }}</p>
+</section>
+
+<section class="detail-section">
+  <h2>Tasks</h2>
+  <div class="task-grid">
+    <div class="task-card" *ngFor="let task of tasks()">
+      <h3>{{ task.title }}</h3>
+      <p class="task-desc" *ngIf="task.description">{{ task.description }}</p>
+      <span class="task-status">{{ task.status }}</span>
+    </div>
+    <p *ngIf="tasks().length === 0" class="empty-text">No tasks for this team yet.</p>
+  </div>
+</section>

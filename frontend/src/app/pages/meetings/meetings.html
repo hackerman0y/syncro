@@ -1,0 +1,52 @@
+<header class="page-header">
+  <div>
+    <h1>Meetings</h1>
+    <p class="subtitle">Schedule and track team meetings.</p>
+  </div>
+  <button mat-flat-button class="new-btn" (click)="toggleForm()">
+    {{ showForm() ? 'Cancel' : '+ New Meeting' }}
+  </button>
+</header>
+
+<form *ngIf="showForm()" [formGroup]="meetingForm" (ngSubmit)="onSubmit()" class="meeting-form">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Meeting title</mat-label>
+    <input matInput type="text" formControlName="title" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Notes</mat-label>
+    <input matInput type="text" formControlName="notes" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Date & time</mat-label>
+    <input matInput type="datetime-local" formControlName="dateTime" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Team</mat-label>
+    <mat-select formControlName="teamId">
+      <mat-option *ngFor="let team of teams()" [value]="team.id">
+        {{ team.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-flat-button type="submit" [disabled]="meetingForm.invalid" class="submit-btn">
+    Schedule meeting
+  </button>
+</form>
+
+<section class="meeting-grid">
+  <div class="meeting-card" *ngFor="let meeting of meetings()">
+    <h3>{{ meeting.title }}</h3>
+    <p class="meeting-time">{{ formatDate(meeting.dateTime) }}</p>
+    <p class="meeting-notes" *ngIf="meeting.notes">{{ meeting.notes }}</p>
+  </div>
+
+  <div class="empty-state" *ngIf="meetings().length === 0">
+    <span class="material-icons empty-icon">event</span>
+    <p>No meetings scheduled yet.</p>
+  </div>
+</section>

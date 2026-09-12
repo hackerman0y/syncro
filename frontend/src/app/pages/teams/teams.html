@@ -8,6 +8,10 @@
   </button>
 </header>
 
+<div class="team-card" *ngFor="let team of teams()" [routerLink]="['/teams', team.id]">
+  <h3>{{ team.name }}</h3>
+</div>
+
 <form *ngIf="showForm()" [formGroup]="teamForm" (ngSubmit)="onSubmit()" class="team-form">
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Team name</mat-label>

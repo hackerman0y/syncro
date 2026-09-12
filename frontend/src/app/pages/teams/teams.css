@@ -57,6 +57,7 @@
   border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 20px;
+  cursor: pointer;
 }
 
 .team-card h3 {

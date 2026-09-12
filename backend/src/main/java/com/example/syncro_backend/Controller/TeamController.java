@@ -22,6 +22,12 @@ public class TeamController {
         return teamRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Team getTeamById(@PathVariable Long id) {
+        return teamRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Team not found"));
+    }
+
     @PostMapping
     public Team createTeam(@RequestBody Team team) {
         return teamService.createTeamWithOwner(team);
